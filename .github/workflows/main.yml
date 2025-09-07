@@ -42,10 +42,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    # This job requires the build job to have completed successfully
     needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        # This is the official action for deploying to GitHub Pages
         uses: actions/deploy-pages@v4
