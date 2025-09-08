@@ -98,7 +98,7 @@ function App() {
             </Section>
 
             {/* --- Projects Section --- */}
-            <Section title="Projects" id="projects">
+            <Section title="Personal Projects" id="projects">
               <DraggableProjects projects={projects} />
             </Section>
 

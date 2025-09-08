@@ -8,8 +8,8 @@ const portfolioData = {
     about: "Recent Computer Science BSc graduate from ELTE with a passion for solving complex, large-scale problems. I see challenges as opportunities for growth and actively apply new technologies in my personal and professional projects. My home lab, where I experiment with networking and servers, is a testament to my hands-on approach to learning and development.",
     skills: {
       "Programming Languages": ["C++", "C#", "C", "PHP", "Java", "JavaScript", "Python"],
-      "Frameworks & Technologies": ["ASP.NET", "Unity", "HTML/CSS", "React"],
-      "DevOps & Infrastructure": ["Docker", "CI/CD", "Linux", "Virtualization", "Networking (Cisco)", "Nginx"],
+      "Frameworks & Technologies": ["ASP.NET","Yii", "CodeIgniter", "Avalonia", "Unity", "HTML/CSS", "React"],
+      "DevOps & Infrastructure": ["Docker", "CI/CD", "Jenkins", "Linux", "Virtualization", "Networking (Cisco)", "Nginx"],
       "Databases": ["SQL", "PostgreSQL", "MariaDB"],
       "Testing": ["Unit Tests", "Integration Tests", "Load Tests"],
     },
@@ -23,7 +23,10 @@ const portfolioData = {
           "Improved system stability and development process efficiency by implementing Docker, Nginx, and Graylog systems.",
           "Ensured software quality by writing unit, integration, and load tests, successfully identifying and fixing performance issues.",
           "Managed software deployment and operation by writing and managing Docker Compose configurations for multi-service integrations.",
-          "Integrated a Kübler F5888 encoder into a C# application with dynamic image switching based on position data."
+          "Planned and engineered an Avalonia application for displaying images based on a Kübler F5888 encoder position, which will be used in elevators.",
+          "Developed an internal ASP.NET MVC portal to manage a custom Android app store, integrating it with a Jenkins pipeline to fully automate the application build and release process.",
+          "I independently designed and implemented the backend of a restaurant software using CRUD principles in the ASP.NET framework.",
+          "On several occasions, there were need to manage physical hardware, such as setting up a new server, troubleshooting network issues or setting up a complete camera system in a restaurant.",
         ]
       },
       {
@@ -47,7 +50,7 @@ const portfolioData = {
       {
         name: "Habit Tracker With Car Game (Thesis)",
         description: "A multi-platform application combining daily tasks with gamification (Smashy road inspired car game), built with a client-server architecture.",
-        tags: ["Unity", "C#", "API", "Client-Server", "ASP.NET", "Docker"],
+        tags: ["Unity", "C#", "API", "Client-Server", "ASP.NET", "Docker", "Unity"],
         link: "https://zsonbi.github.io/Thesis/game/",
         code: "https://github.com/zsonbi/Thesis"
       },
