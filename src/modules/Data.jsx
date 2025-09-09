@@ -9,7 +9,7 @@ const portfolioData = {
     skills: {
       "Programming Languages": ["C++", "C#", "C", "PHP", "Java", "JavaScript", "Python"],
       "Frameworks & Technologies": ["ASP.NET","Yii", "CodeIgniter", "Avalonia", "Unity", "HTML/CSS", "React"],
-      "DevOps & Infrastructure": ["Docker", "CI/CD", "Jenkins", "Linux", "Virtualization", "Networking (Cisco)", "Nginx"],
+      "DevOps & Infrastructure": ["Docker", "CI/CD", "Jenkins", "Linux", "Virtualization", "Networking (Cisco, Mikrotik)", "Nginx"],
       "Databases": ["SQL", "PostgreSQL", "MariaDB"],
       "Testing": ["Unit Tests", "Integration Tests", "Load Tests"],
     },
@@ -66,6 +66,18 @@ const portfolioData = {
         description: "A simulation modeling the spread of diseases in an urban environment for the Szeged Innovation Competition. It has a configurable on startup for city size, inhabitants behaviour, virus properties and can be interacted during runtime as well.",
         tags: ["Simulation", "C#", "Data Modeling", "Unity"],
         code: "https://github.com/zsonbi/Virus-Simulation"
+      },
+      {
+        name: "Docker image for graylog-sidecar",
+        description: "A Docker image for Graylog Sidecar, a lightweight configuration management system for log collectors. It simplifies the deployment and management of log collectors in a Dockerized environment, so it is easily deployed in servers or next to services.",
+        tags: [ "Docker", "Monitoring", "Agents", "Graylog"],
+        code: "https://github.com/zsonbi/graylog-sidecar"
+      },
+      {
+        name: "Docker image for jenkins agents",
+        description: "A Docker image for Jenkins agents, designed to streamline the setup of build agents in a Jenkins CI/CD environment. This image comes pre-configured with essential tools and dependencies, making it easy to deploy and scale Jenkins agents as needed.",
+        tags: [ "Docker", "Monitoring", "Agents", "Graylog"],
+        code: "https://github.com/zsonbi/graylog-sidecar"
       }
     ],
     education: [
