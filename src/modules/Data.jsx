@@ -65,6 +65,7 @@ const portfolioData = {
         name: "Virus Spread Simulation",
         description: "A simulation modeling the spread of diseases in an urban environment for the Szeged Innovation Competition. It has a configurable on startup for city size, inhabitants behaviour, virus properties and can be interacted during runtime as well.",
         tags: ["Simulation", "C#", "Data Modeling", "Unity"],
+        link: "https://zsonbi.github.io/Virus-Simulation/",
         code: "https://github.com/zsonbi/Virus-Simulation"
       },
       {
@@ -76,7 +77,7 @@ const portfolioData = {
       {
         name: "Docker image for jenkins agents",
         description: "A Docker image for Jenkins agents, designed to streamline the setup of build agents in a Jenkins CI/CD environment. This image comes pre-configured with essential tools and dependencies, making it easy to deploy and scale Jenkins agents as needed.",
-        tags: [ "Docker", "Monitoring", "Agents", "Graylog"],
+        tags: [ "Docker", "Jenkins", "Agents", "CI/CD"],
         code: "https://github.com/zsonbi/graylog-sidecar"
       }
     ],
