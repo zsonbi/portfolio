@@ -8,7 +8,7 @@ const portfolioData = {
     about: "Recent Computer Science BSc graduate from ELTE with a passion for solving complex, large-scale problems. I see challenges as opportunities for growth and actively apply new technologies in my personal and professional projects. My home lab, where I experiment with networking and servers, is a testament to my hands-on approach to learning and development.",
     skills: {
       "Programming Languages": ["C++", "C#", "C", "PHP", "Java", "JavaScript", "Python"],
-      "Frameworks & Technologies": ["ASP.NET","Yii", "CodeIgniter", "Avalonia", "Unity", "HTML/CSS", "React"],
+      "Frameworks & Technologies": ["ASP.NET","Yii", "CodeIgniter", "Avalonia", "Unity", "HTML/CSS", "React", "Keycloak"],
       "DevOps & Infrastructure": ["Docker", "CI/CD", "Jenkins", "Linux", "Virtualization", "Networking (Cisco, Mikrotik)", "Nginx"],
       "Databases": ["SQL", "PostgreSQL", "MariaDB"],
       "Testing": ["Unit Tests", "Integration Tests", "Load Tests"],
