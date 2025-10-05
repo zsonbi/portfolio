@@ -96,12 +96,12 @@ const portfolioData = {
      homelab: [
       {
         name: 'Rack',
-        image: '/portfolio/src/assets/images/rack.jpg',
+        image: '/portfolio/assets/images/rack.jpg',
         description: 'My main router(RB5009UG+S+IN) and my main switch(CRS310-8G+2S+) which are the backbone of my home network'
       },
       {
         name: 'Mini server',
-        image: '/portfolio/src/assets/images/mini-server.jpg',
+        image: '/portfolio/assets/images/mini-server.jpg',
         description: 'To lower my operating costs, I\'m using a Beelink SER8 mini-PC as a server. I\'ve upgraded it to 96GB of RAM so I can run various services using Proxmox.'
       }
     ]
