@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './modules/Header.jsx';
 import Section from './modules/Section.jsx';
 import DraggableProjects from './modules/DraggableProjects.jsx';
+import DraggableHomelab from './modules/DraggableHomelab.jsx';
 import './App.css';
 import './styles/Header.css';
 import {MailIcon, GithubIcon,SocialsIcon, LocationIcon, LinkedInIcon} from './modules/Icons.jsx';
@@ -10,7 +11,7 @@ import portfolioData from './modules/Data.jsx';
 import profileImage from '/src/assets/images/profile.jpg';
 
 function App() {
-  const { name, title, email, facebook,instagram, github,linkedin, location, about, skills, experience, projects, education } = portfolioData;
+  const { name, title, email, facebook,instagram, github,linkedin, location, about, skills, experience, projects, education, homelab } = portfolioData;
   const [copyText, setCopyText] = React.useState('Copy');
 
   const handleCopy = () => {
@@ -97,9 +98,16 @@ function App() {
               </div>
             </Section>
 
+      
+
             {/* --- Projects Section --- */}
             <Section title="Personal Projects" id="projects">
               <DraggableProjects projects={projects} />
+            </Section>
+
+            {/* --- Homelab Section --- */}
+            <Section title="Homelab" id="homelab">
+              <DraggableHomelab homelab={homelab} />
             </Section>
 
             {/* --- Education Section --- */}
