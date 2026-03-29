@@ -1,0 +1,15 @@
+<SectionHeader Id="education" Title="Education">
+    <MudStack Spacing="3">
+        @foreach (var edu in PortfolioData.Education)
+        {
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem;">
+                <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 500;">
+                    @edu.Degree &middot; @edu.Institution
+                </MudText>
+                <MudText Typo="Typo.body2" Style="font-family: monospace; color: #64748b;">
+                    @edu.Period
+                </MudText>
+            </div>
+        }
+    </MudStack>
+</SectionHeader>

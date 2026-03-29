@@ -1,0 +1,66 @@
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div class="scroll-container-wrapper" @onmouseenter="() => _showArrows = true" @onmouseleave="() => _showArrows = false">
+    <div @ref="_scrollRef" class="scroll-container hide-scrollbar">
+        @ChildContent
+    </div>
+
+    @if (_showScrollLeft)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronLeft"
+                       Class="@($"scroll-arrow scroll-arrow-left {(_showArrows ? "visible" : "")}")"
+                       OnClick="@(() => Scroll("left"))" />
+    }
+
+    @if (_showScrollRight)
+    {
+        <div class="@($"scroll-arrow scroll-arrow-right {(_showArrows ? "visible" : "")}")">
+            <MudIconButton Icon="@Icons.Material.Filled.ChevronRight"
+                           OnClick="@(() => Scroll("right"))" />
+            <span class="ping-dot"></span>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private ElementReference _scrollRef;
+    private bool _showArrows;
+    private bool _showScrollLeft;
+    private bool _showScrollRight;
+    private DotNetObjectReference<ScrollableCardContainer>? _dotNetRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("initDragScroll", _scrollRef);
+            await JS.InvokeVoidAsync("initScrollState", _dotNetRef, _scrollRef);
+        }
+    }
+
+    [JSInvokable]
+    public void UpdateScrollState(bool canScrollLeft, bool canScrollRight)
+    {
+        if (_showScrollLeft != canScrollLeft || _showScrollRight != canScrollRight)
+        {
+            _showScrollLeft = canScrollLeft;
+            _showScrollRight = canScrollRight;
+            StateHasChanged();
+        }
+    }
+
+    private async Task Scroll(string direction)
+    {
+        await JS.InvokeVoidAsync("scrollContainer", _scrollRef, direction);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _dotNetRef?.Dispose();
+        await JS.InvokeVoidAsync("disposeScrollState", _scrollRef);
+    }
+}

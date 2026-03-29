@@ -1,0 +1,84 @@
+@inject IJSRuntime JS
+@inject ISnackbar Snackbar
+
+<SectionHeader Id="contact" Title="Contact">
+    <div style="max-width: 48rem; margin: 0 auto;">
+        <MudText Typo="Typo.body1" Align="Align.Center" Style="color: #cbd5e1; margin-bottom: 2rem;">
+            Got a stellar project idea or have a question? I'd love to hear from you.
+            I'm currently open to new opportunities and collaborations. Let's build something great together!
+        </MudText>
+
+        <MudStack Spacing="3">
+            @* Email Card *@
+            <MudPaper Class="contact-card" Elevation="0">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                    <MudIcon Icon="@Icons.Material.Filled.Email" Style="color: #5eead4; margin-right: 0.75rem;" />
+                    <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 700;">E-mail</MudText>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-left: 2rem;">
+                    <MudText Typo="Typo.body2" Style="font-family: monospace; color: #cbd5e1;">
+                        @PortfolioData.Email
+                    </MudText>
+                    <MudButton Variant="Variant.Filled"
+                               Size="Size.Small"
+                               Style="background-color: #334155; color: #cbd5e1; min-width: 4rem;"
+                               OnClick="CopyEmail">
+                        @_copyText
+                    </MudButton>
+                </div>
+            </MudPaper>
+
+            @* Location Card *@
+            <MudPaper Class="contact-card" Elevation="0">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                    <MudIcon Icon="@Icons.Material.Filled.LocationOn" Style="color: #5eead4; margin-right: 0.75rem;" />
+                    <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 700;">Location</MudText>
+                </div>
+                <div style="padding-left: 2rem;">
+                    <MudText Typo="Typo.body2" Style="font-family: monospace; color: #cbd5e1;">
+                        @PortfolioData.Location
+                    </MudText>
+                    <MudText Typo="Typo.caption" Style="color: #64748b; margin-top: 0.25rem;">
+                        Available for remote work worldwide
+                    </MudText>
+                </div>
+            </MudPaper>
+
+            @* Social Media Card *@
+            <MudPaper Class="contact-card" Elevation="0">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                    <MudIcon Icon="@Icons.Material.Filled.Forum" Style="color: #5eead4; margin-right: 0.75rem;" />
+                    <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 700;">Social Media</MudText>
+                </div>
+                <div style="padding-left: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                    <MudLink Href="@PortfolioData.LinkedInUrl" Target="_blank"
+                             Style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; text-decoration: none;"
+                             Class="social-link">
+                        @((MarkupString)CustomIcons.LinkedIn)
+                        LinkedIn
+                    </MudLink>
+                    <MudLink Href="@PortfolioData.GitHubUrl" Target="_blank"
+                             Style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; text-decoration: none;"
+                             Class="social-link">
+                        @((MarkupString)CustomIcons.GitHub)
+                        GitHub
+                    </MudLink>
+                </div>
+            </MudPaper>
+        </MudStack>
+    </div>
+</SectionHeader>
+
+@code {
+    private string _copyText = "Copy";
+
+    private async Task CopyEmail()
+    {
+        await JS.InvokeVoidAsync("copyToClipboard", PortfolioData.Email);
+        _copyText = "Copied!";
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copyText = "Copy";
+        StateHasChanged();
+    }
+}

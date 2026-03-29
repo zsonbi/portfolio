@@ -1,0 +1,22 @@
+<SectionHeader Id="skills" Title="Skills">
+    <MudGrid Spacing="4">
+        @foreach (var (category, skills) in PortfolioData.Skills)
+        {
+            <MudItem xs="12" sm="6">
+                <MudPaper Class="skill-card" Elevation="0">
+                    <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 500; margin-bottom: 1rem;">
+                        @category
+                    </MudText>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        @foreach (var skill in skills)
+                        {
+                            <MudChip T="string" Class="skill-chip" Size="Size.Small" Variant="Variant.Filled">
+                                @skill
+                            </MudChip>
+                        }
+                    </div>
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+</SectionHeader>

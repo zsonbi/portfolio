@@ -1,0 +1,20 @@
+<section id="home" class="section-container" style="margin-bottom: 4rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;">
+        <div>
+            <MudText Typo="Typo.h3" Style="font-weight: 700; letter-spacing: -0.025em; color: #e2e8f0;">
+                @PortfolioData.Name
+            </MudText>
+            <MudText Typo="Typo.h6" Style="margin-top: 0.75rem; font-weight: 500; letter-spacing: -0.025em; color: #e2e8f0;">
+                @PortfolioData.Title
+            </MudText>
+            <MudText Typo="Typo.body1" Style="max-width: 20rem;">
+                @PortfolioData.Location
+            </MudText>
+        </div>
+        <div style="flex-shrink: 0;">
+            <img src="images/profile.jpg"
+                 alt="@PortfolioData.Name"
+                 class="profile-photo" />
+        </div>
+    </div>
+</section>

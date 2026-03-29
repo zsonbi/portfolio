@@ -1,0 +1,23 @@
+<SectionHeader Id="experience" Title="Experience">
+    <MudStack Spacing="8">
+        @foreach (var job in PortfolioData.Experience)
+        {
+            <div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem;">
+                    <MudText Typo="Typo.h6" Style="color: #e2e8f0; font-weight: 500;">
+                        @job.Role &middot; @job.Company
+                    </MudText>
+                    <MudText Typo="Typo.body2" Style="font-family: monospace; color: #64748b;">
+                        @job.Period
+                    </MudText>
+                </div>
+                <ul style="margin-top: 0.5rem; list-style-type: disc; list-style-position: inside; display: flex; flex-direction: column; gap: 0.25rem; color: #cbd5e1;">
+                    @foreach (var point in job.DescriptionPoints)
+                    {
+                        <li>@point</li>
+                    }
+                </ul>
+            </div>
+        }
+    </MudStack>
+</SectionHeader>

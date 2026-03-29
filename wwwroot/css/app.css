@@ -1,0 +1,384 @@
+/* === Global === */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px;
+    background-color: #0f172a;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* === Portfolio Content Container === */
+.portfolio-content {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.section-container {
+    margin-bottom: 4rem;
+    scroll-margin-top: 6rem;
+}
+
+/* === Header === */
+.portfolio-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 1rem;
+    background-color: #0f172a;
+}
+
+.header-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.header-nav {
+    background-color: #1e293b;
+    border-radius: 9999px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0.75rem;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-link {
+    display: flex;
+    padding: 0.25rem;
+    z-index: 60;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: #94a3b8;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #5eead4;
+    background-color: rgba(51, 65, 85, 0.5);
+}
+
+.nav-link.active {
+    background-color: #334155;
+    color: #5eead4;
+}
+
+.menu-button {
+    display: none !important;
+    color: #94a3b8;
+}
+
+.menu-button:hover {
+    color: #5eead4;
+}
+
+/* === Profile Photo === */
+.profile-photo {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(45, 212, 191, 0.2);
+    box-shadow: 0 0 20px rgba(94, 234, 212, 0.1);
+}
+
+/* === Skill Cards === */
+.skill-card {
+    background: rgba(30, 41, 59, 0.5) !important;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+}
+
+.skill-card:hover {
+    box-shadow: 0 0 20px rgba(94, 234, 212, 0.1);
+}
+
+.skill-chip {
+    background: rgba(94, 234, 212, 0.1) !important;
+    color: #5eead4 !important;
+    font-size: 0.75rem;
+}
+
+/* === Contact Cards === */
+.contact-card {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border: 1px solid #334155;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* === Social Links === */
+.social-link:hover {
+    color: #5eead4 !important;
+}
+
+.social-link svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* === Project / Homelab Cards === */
+.project-card {
+    flex-shrink: 0;
+    width: 20rem;
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-radius: 0.5rem;
+    box-shadow: inset 0 1px 0 0 rgba(148, 163, 184, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    background: rgba(30, 41, 59, 0.8) !important;
+}
+
+.project-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* === Scrollable Card Container === */
+.scroll-container-wrapper {
+    position: relative;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    cursor: grab;
+    user-select: none;
+}
+
+.scroll-container.dragging {
+    cursor: grabbing;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* === Scroll Arrows === */
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    color: #e2e8f0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+.scroll-arrow.visible {
+    opacity: 1;
+}
+
+.scroll-arrow-left {
+    left: -1rem;
+}
+
+.scroll-arrow-right {
+    right: -1rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+.ping-dot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #5eead4;
+    opacity: 0.75;
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* === Mobile Styles === */
+@media (max-width: 640px) {
+    .portfolio-header {
+        padding: 0.5rem;
+    }
+
+    .header-container {
+        padding: 0 0.5rem;
+        text-align: center;
+    }
+
+    .menu-button {
+        display: inline-flex !important;
+        margin: 0 auto;
+    }
+
+    .header-nav {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        width: auto;
+        min-width: max-content;
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 0.75rem;
+        opacity: 0;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        padding: 0.5rem;
+    }
+
+    .header-nav.open {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 0.5rem;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(51, 65, 85, 0.8);
+    }
+
+    .logo-link {
+        display: none;
+    }
+
+    .profile-photo {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .project-card {
+        width: 20rem;
+    }
+}
+
+@media (min-width: 641px) {
+    .profile-photo {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .project-card {
+        width: 24rem;
+    }
+}
+
+/* === Loading Progress (keep from template) === */
+.loading-progress {
+    position: absolute;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    inset: 20vh 0 auto 0;
+    margin: 0 auto;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: #334155;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+.loading-progress circle:last-child {
+    stroke: #5eead4;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    color: #94a3b8;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}
+
+/* === Error UI === */
+#blazor-error-ui {
+    background: #1e293b;
+    color: #e2e8f0;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+/* === Override MudBlazor defaults === */
+.mud-main-content {
+    padding-top: 0 !important;
+}

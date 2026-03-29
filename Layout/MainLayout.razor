@@ -1,0 +1,92 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject IJSRuntime JS
+
+<MudThemeProvider Theme="PortfolioTheme.Theme" IsDarkMode="true" />
+<MudPopoverProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <header class="portfolio-header">
+        <div class="header-container">
+            @* Desktop Navigation *@
+            <nav class="header-nav @(_menuOpen ? "open" : "")">
+                <ul class="nav-list">
+                    <li>
+                        <a href="javascript:void(0)" class="logo-link" @onclick="@(() => ScrollTo("home"))">
+                            <MudImage Src="images/icon.png" Alt="Logo" Width="28" Height="28" />
+                        </a>
+                    </li>
+                    @foreach (var item in _navItems)
+                    {
+                        <li>
+                            <a href="javascript:void(0)"
+                               class="nav-link @(_activeSection == item.Id ? "active" : "")"
+                               @onclick="() => ScrollTo(item.Id)">
+                                @item.Title
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+            @* Mobile Menu Button *@
+            <MudIconButton Icon="@(_menuOpen ? Icons.Material.Filled.Close : Icons.Material.Filled.Menu)"
+                           Color="Color.Inherit"
+                           Class="menu-button"
+                           OnClick="ToggleMenu" />
+        </div>
+    </header>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _menuOpen;
+    private string _activeSection = "home";
+    private DotNetObjectReference<MainLayout>? _dotNetRef;
+
+    private readonly record struct NavItem(string Id, string Title);
+
+    private static readonly NavItem[] _navItems =
+    [
+        new("about", "About"),
+        new("skills", "Skills"),
+        new("experience", "Experience"),
+        new("projects", "Projects"),
+        new("homelab", "Homelab"),
+        new("contact", "Contact"),
+    ];
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            var sectionIds = _navItems.Select(n => n.Id).ToArray();
+            await JS.InvokeVoidAsync("initScrollSpy", _dotNetRef, sectionIds);
+        }
+    }
+
+    [JSInvokable]
+    public void SetActiveSection(string sectionId)
+    {
+        if (_activeSection != sectionId)
+        {
+            _activeSection = sectionId;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ScrollTo(string sectionId)
+    {
+        _menuOpen = false;
+        await JS.InvokeVoidAsync("scrollToSection", sectionId);
+    }
+
+    private void ToggleMenu() => _menuOpen = !_menuOpen;
+
+    public void Dispose() => _dotNetRef?.Dispose();
+}

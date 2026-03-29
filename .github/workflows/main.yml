@@ -1,8 +1,8 @@
-name: Deploy static content to Pages
+name: Deploy Blazor Portfolio to Pages
 
 on:
   push:
-    branches: ['cicd',"main"]
+    branches: ['cicd', 'main']
 
   workflow_dispatch:
 
@@ -21,21 +21,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
         with:
-          node-version: 24
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Publish
+        run: dotnet publish -c Release -o release
+
+      - name: Prepare for GitHub Pages
+        run: |
+          cp release/wwwroot/index.html release/wwwroot/404.html
+          touch release/wwwroot/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './release/wwwroot'
 
   deploy:
     environment:

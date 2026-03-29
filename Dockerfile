@@ -1,18 +1,13 @@
-# Build stage
-FROM node:24-alpine AS builder
-
-WORKDIR /app
-
-RUN apk add --no-cache python3 make g++ libc6-compat
-COPY package*.json ./
-RUN npm ci
+FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
+WORKDIR /src
+COPY BlazorPortfolio.csproj .
+RUN dotnet restore
 COPY . .
-RUN npm run build
-
+RUN dotnet publish -c Release -o /app/publish
 
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=build /app/publish/wwwroot /usr/share/nginx/html
 
 HEALTHCHECK --interval=30s --timeout=3s \
     CMD wget -q --spider http://localhost/health || exit 1

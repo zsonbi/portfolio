@@ -1,0 +1,18 @@
+<SectionHeader Id="homelab" Title="Homelab">
+    <ScrollableCardContainer>
+        @foreach (var item in PortfolioData.Homelab)
+        {
+            <MudCard Class="project-card" Elevation="0">
+                <MudCardMedia Image="@item.Image" Height="192" />
+                <MudCardContent>
+                    <MudText Typo="Typo.subtitle1" Style="color: #e2e8f0; font-weight: 500;">
+                        @item.Name
+                    </MudText>
+                    <MudText Typo="Typo.body2" Style="margin-top: 0.5rem;">
+                        @item.Description
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        }
+    </ScrollableCardContainer>
+</SectionHeader>
