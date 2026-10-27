@@ -1,6 +1,8 @@
 services:
   portfolio:
     build:
+      pull: true
+      no_cache: true
       context: .
       dockerfile: Dockerfile
     ports:
